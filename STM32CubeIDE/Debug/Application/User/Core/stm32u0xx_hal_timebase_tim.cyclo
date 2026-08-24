@@ -1,0 +1,3 @@
+C:/Users/sav02/Documents/CE006_001_Vxxx/Core/Src/stm32u0xx_hal_timebase_tim.c:41:19:HAL_InitTick	2
+C:/Users/sav02/Documents/CE006_001_Vxxx/Core/Src/stm32u0xx_hal_timebase_tim.c:96:6:HAL_SuspendTick	1
+C:/Users/sav02/Documents/CE006_001_Vxxx/Core/Src/stm32u0xx_hal_timebase_tim.c:108:6:HAL_ResumeTick	1

@@ -97,6 +97,6 @@ Encoder_Status_t Encoder_Init(void);
  * @retval ENCODER_NOT_INITIALIZED    Encoder_Init() n'a pas été appelée avant
  * @retval ENCODER_INVALID_PARAM      p_position est NULL
  */
-Encoder_Status_t Encoder_GetPosition(int32_t *p_position);
+Encoder_Status_t Encoder_GetPosition(int16_t *p_position);
 
 #endif /* ENCODER_DRIVER_H */

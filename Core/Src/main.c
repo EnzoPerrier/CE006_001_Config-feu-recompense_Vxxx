@@ -22,6 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
+
+#include "encoder_driver.h"
+
 
 /* USER CODE END Includes */
 
@@ -53,6 +57,7 @@ UART_HandleTypeDef huart2;
 PCD_HandleTypeDef hpcd_USB_DRD_FS;
 
 /* USER CODE BEGIN PV */
+int16_t encoder_position;
 
 /* USER CODE END PV */
 
@@ -91,6 +96,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+
 
   /* USER CODE END Init */
 

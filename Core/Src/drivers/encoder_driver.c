@@ -12,8 +12,8 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "encoder_driver.h"
 #include "stm32u0xx_hal_lptim.h"
+#include "drivers/encoder_driver.h"
 
 #include <stdbool.h>
 
@@ -60,21 +60,19 @@ Encoder_Status_t Encoder_Init(void)
  * @retval ENCODER_NOT_INITIALIZED driver non initialisé.
  * @retval ENCODER_INVALID_PARAM   paramètre invalide passé dans la fonction (ex: pointeur = NULL).
  */
-Encoder_Status_t Encoder_GetPosition(int32_t *p_position)
+Encoder_Status_t Encoder_GetPosition(int16_t *p_position)
 {
-	if(p_position == NULL)
-	{
+	if(p_position == NULL) // Si adresse du pointeur = NULL
 		return(ENCODER_INVALID_PARAM);
-	}
 
-	if(encoder_status == false)
-	{
+
+	if(encoder_status == false) // Si l'encodeur n'a pas été initialisé
 		return(ENCODER_NOT_INITALIZED);
-	}
 
-	*p_position = HAL_LPTIM_ReadCounter(&hlptim3);
+
+	/* TODO: ATTENTION!! Il peut y avoir dépassement, à gérer plus tard */
+	*p_position = HAL_LPTIM_ReadCounter(&hlptim3); // On stock à l'adresse de la variable (*p_pointeur) la valeur du compteur de l'encodeur
+
 	return ENCODER_OK;
-
-
 }
 

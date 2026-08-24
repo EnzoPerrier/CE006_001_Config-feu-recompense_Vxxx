@@ -68,8 +68,8 @@ all: main-build
 main-build: CE006_Config\ feu\ recompense.elf secondary-outputs
 
 # Tool invocations
-CE006_Config\ feu\ recompense.elf CE006_Config\ feu\ recompense.map: $(OBJS) $(USER_OBJS) C:\Users\sav02\Documents\CE006_001_Vxxx\STM32CubeIDE\STM32U073C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "CE006_Config feu recompense.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\sav02\Documents\CE006_001_Vxxx\STM32CubeIDE\STM32U073C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CE006_Config feu recompense.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+CE006_Config\ feu\ recompense.elf CE006_Config\ feu\ recompense.map: $(OBJS) $(USER_OBJS) C:\Users\sav02\Documents\CE006_001_Config-feu-recompense_Vxxx\STM32CubeIDE\STM32U073C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "CE006_Config feu recompense.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\sav02\Documents\CE006_001_Config-feu-recompense_Vxxx\STM32CubeIDE\STM32U073C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CE006_Config feu recompense.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

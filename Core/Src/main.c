@@ -24,8 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdint.h>
 
-#include "encoder_driver.h"
-
+#include "drivers/encoder_driver.h"
 
 /* USER CODE END Includes */
 
@@ -57,7 +56,6 @@ UART_HandleTypeDef huart2;
 PCD_HandleTypeDef hpcd_USB_DRD_FS;
 
 /* USER CODE BEGIN PV */
-int16_t encoder_position;
 
 /* USER CODE END PV */
 
@@ -97,7 +95,6 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -117,6 +114,9 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
+  Encoder_Init();
+  int16_t testPositionVal = 0;
+
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();
@@ -127,8 +127,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 
+    /* USER CODE END WHILE */
+	  Encoder_GetPosition(&testPositionVal);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

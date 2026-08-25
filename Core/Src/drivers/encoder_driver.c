@@ -12,7 +12,7 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32u0xx_hal_lptim.h"
+#include "stm32u0xx_hal.h"
 #include "drivers/encoder_driver.h"
 
 #include <stdbool.h>
@@ -67,7 +67,7 @@ Encoder_Status_t Encoder_GetPosition(int16_t *p_position)
 
 
 	if(encoder_status == false) // Si l'encodeur n'a pas été initialisé
-		return(ENCODER_NOT_INITALIZED);
+		return(ENCODER_NOT_INITIALIZED);
 
 
 	/* TODO: ATTENTION!! Il peut y avoir dépassement, à gérer plus tard */
@@ -75,4 +75,3 @@ Encoder_Status_t Encoder_GetPosition(int16_t *p_position)
 
 	return ENCODER_OK;
 }
-

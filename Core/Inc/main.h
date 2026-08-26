@@ -87,6 +87,7 @@ void Error_Handler(void);
 #define ENCOD_B_GPIO_Port GPIOB
 #define ENCOD_SW_Pin GPIO_PIN_9
 #define ENCOD_SW_GPIO_Port GPIOB
+#define ENCOD_SW_EXTI_IRQn EXTI4_15_IRQn
 
 /* USER CODE BEGIN Private defines */
 

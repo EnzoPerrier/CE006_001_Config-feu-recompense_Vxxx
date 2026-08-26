@@ -1,2 +1,2 @@
-../Core/Src/drivers/encoder_driver.c:42:18:Encoder_Init	2
-../Core/Src/drivers/encoder_driver.c:63:18:Encoder_GetPosition	3
+../Core/Src/drivers/encoder_driver.c:50:18:Encoder_Init	3
+../Core/Src/drivers/encoder_driver.c:77:18:Encoder_GetPosition	3

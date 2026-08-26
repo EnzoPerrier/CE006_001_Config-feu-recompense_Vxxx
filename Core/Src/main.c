@@ -115,7 +115,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   Encoder_Init();
-  int16_t testPositionVal = 0;
+  int32_t testPositionVal = 0;
 
   /* USER CODE END 2 */
 
@@ -129,7 +129,7 @@ int main(void)
   {
 
     /* USER CODE END WHILE */
-	  Encoder_GetPosition(&testPositionVal);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -463,8 +463,8 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, DC_LCD_Pin|RES_LCD_Pin|BLK_LCD_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : BAT_CHG_Pin BAT_PGOOD_Pin ENCOD_SW_Pin */
-  GPIO_InitStruct.Pin = BAT_CHG_Pin|BAT_PGOOD_Pin|ENCOD_SW_Pin;
+  /*Configure GPIO pins : BAT_CHG_Pin BAT_PGOOD_Pin */
+  GPIO_InitStruct.Pin = BAT_CHG_Pin|BAT_PGOOD_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
@@ -482,6 +482,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ENCOD_SW_Pin */
+  GPIO_InitStruct.Pin = ENCOD_SW_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(ENCOD_SW_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

@@ -1,9 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    app_threadx.h
+  * @file    app_threadx.c
   * @author  MCD Application Team
-  * @brief   ThreadX applicative header file
+  * @brief   ThreadX applicative file
   ******************************************************************************
     * @attention
   *
@@ -30,6 +30,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "main.h"
+#include "threads/ui_thread.h"
 
 /* USER CODE END Includes */
 
@@ -46,6 +48,9 @@
 /* Private defines -----------------------------------------------------------*/
 
 /* USER CODE BEGIN PD */
+
+#define UI_THREAD_STACK_SIZE   (1024)   // en octets
+#define UI_THREAD_PRIORITY     (2)
 
 /* USER CODE END PD */
 

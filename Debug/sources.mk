@@ -25,6 +25,7 @@ SUBDIRS := \
 AZURE_RTOS/App \
 Core/Src \
 Core/Src/drivers \
+Core/Src/threads \
 Core/Startup \
 Drivers/STM32U0xx_HAL_Driver/Src \
 Middlewares/ST/threadx/common/src \

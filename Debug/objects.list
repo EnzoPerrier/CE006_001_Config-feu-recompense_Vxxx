@@ -9,6 +9,7 @@
 "./Core/Src/system_stm32u0xx.o"
 "./Core/Src/tx_initialize_low_level.o"
 "./Core/Src/drivers/encoder_driver.o"
+"./Core/Src/threads/ui_thread.o"
 "./Core/Startup/startup_stm32u073c8tx.o"
 "./Drivers/STM32U0xx_HAL_Driver/Src/stm32u0xx_hal.o"
 "./Drivers/STM32U0xx_HAL_Driver/Src/stm32u0xx_hal_adc.o"

@@ -28,6 +28,7 @@ extern TX_EVENT_FLAGS_GROUP ui_events_group;
 /* Private types -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
+static int debug_count = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -62,6 +63,17 @@ void UI_Thread_Entry(ULONG initial_input)
 		 *  - if (flags_recus & UI_EVENT_BUTTON_PRESSED) { ... }
 		 *  - if (flags_recus & UI_EVENT_ENCODER_MOVED)  { ... }
 		 */
+
+		if(flags_recus & UI_EVENT_BUTTON_PRESSED){
+			// Action à exécuter en cas de détection d'appui sur BP
+			debug_count++;
+		}
+
+		/* Fonction non utilisée car l'encodeur est actuellement en polling, à utiliser plus tard si on le passe en interruption
+		if(flags_recus & UI_EVENT_ENCODER_MOVED){
+			// Action à exécuter en cas de détection de rotation d'encodeur
+		}
+		*/
 	}
 }
 

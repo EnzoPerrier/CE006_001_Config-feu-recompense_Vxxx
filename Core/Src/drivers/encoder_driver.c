@@ -12,14 +12,19 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
+#include "main.h"
 #include "stm32u0xx_hal.h"
 #include "drivers/encoder_driver.h"
+#include "threads/ui_thread.h"
 
 #include <stdbool.h>
 
 /* Extern variables ---------------------------------------------------------*/
-
+// ----- Encodeur rotatif
 extern LPTIM_HandleTypeDef hlptim3;
+
+// ----- Encodeur SW (BP)
+extern TX_EVENT_FLAGS_GROUP ui_events_group;
 
 /* Private constants ---------------------------------------------------------*/
 
@@ -28,17 +33,23 @@ extern LPTIM_HandleTypeDef hlptim3;
 #define ENCODER_RAW_COUNTER_RANGE   (65536)
 #define ENCODER_RAW_COUNTER_HALF    (ENCODER_RAW_COUNTER_RANGE / 2) // Moitié du cycle, seuil de détection du débordement
 
+// Délai minimum entre deux appuis valides, en millisecondes
+#define BUTTON_DEBOUNCE_MS   (50)
+
 /* Private macros ------------------------------------------------------------*/
 
 /* Private types -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
+// ----- Encodeur rotatif
 static bool encoder_status = false;
-
-static int16_t valeur_brute_prec = 0; // Dernière valeur BRUTE (0-65535) lue du registre, jamais autre chose
+static uint16_t valeur_brute_prec = 0; // Dernière valeur BRUTE (0-65535) lue du registre, jamais autre chose
 static int32_t position_cumulee = 0;  // Position cumulée totale, retournée à l'appelant (pas de limite pratique)
 
+
+
 /* Private function prototypes -----------------------------------------------*/
+
 
 /* Exported functions --------------------------------------------------------*/
 
@@ -76,7 +87,8 @@ Encoder_Status_t Encoder_Init(void)
  */
 Encoder_Status_t Encoder_GetPosition(int32_t *p_position)
 {
-	int16_t valeur_brute_act = 0, delta = 0;
+	uint16_t valeur_brute_act = 0;
+	int32_t delta = 0;
 
 	if(p_position == NULL) // Si adresse du pointeur = NULL
 	{
@@ -88,7 +100,8 @@ Encoder_Status_t Encoder_GetPosition(int32_t *p_position)
 		return(ENCODER_NOT_INITIALIZED);
 	}
 
-	valeur_brute_act = (int32_t)HAL_LPTIM_ReadCounter(&hlptim3); // Valeur brute (0-65535), comparable à valeur_brute_prec
+	valeur_brute_act = (uint16_t)HAL_LPTIM_ReadCounter(&hlptim3); // Valeur brute (0-65535), comparable à valeur_brute_prec
+
 	delta = valeur_brute_act - valeur_brute_prec;
 
 	// Corrige le delta en cas de passage par 0/65535.
@@ -114,5 +127,32 @@ Encoder_Status_t Encoder_GetPosition(int32_t *p_position)
 	return ENCODER_OK;
 }
 
+/**
+ * @brief Handle the encoder button external interrupt.
+ * @details
+ * This callback is called by the STM32 HAL when a GPIO external interrupt
+ * occurs. If the interrupt comes from the encoder push button, the
+ * corresponding UI event flag is set in the ThreadX event flags group.
+ * @param[in] GPIO_Pin GPIO pin that triggered the external interrupt.
+ * @retval None
+ */
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	static uint32_t last_button_press_tick = 0; // Variable utilisée pour le debounce logiciel du BP encodeur
+	uint32_t now = HAL_GetTick();
+
+    if (GPIO_Pin == ENCOD_SW_Pin)
+    {
+    	if ((now - last_button_press_tick) >= BUTTON_DEBOUNCE_MS) // Debounce logiciel
+    	{
+    		tx_event_flags_set(&ui_events_group, UI_EVENT_BUTTON_PRESSED, TX_OR);
+    		last_button_press_tick = now;
+    	}
+
+    }
+}
+
 
 /* Private functions ---------------------------------------------------------*/
+

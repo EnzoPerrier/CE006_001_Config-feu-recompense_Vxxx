@@ -61,6 +61,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 CE006_Config_feu_recompense.list \
 
+OBJCOPY_HEX += \
+CE006_Config_feu_recompense.hex \
+
 
 # All Target
 all: main-build
@@ -84,12 +87,17 @@ CE006_Config_feu_recompense.list: $(EXECUTABLES) makefile objects.list $(OPTIONA
 	@echo 'Finished building: $@'
 	@echo ' '
 
+CE006_Config_feu_recompense.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "CE006_Config_feu_recompense.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) CE006_Config_feu_recompense.elf CE006_Config_feu_recompense.list CE006_Config_feu_recompense.map default.size.stdout
+	-$(RM) CE006_Config_feu_recompense.elf CE006_Config_feu_recompense.hex CE006_Config_feu_recompense.list CE006_Config_feu_recompense.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

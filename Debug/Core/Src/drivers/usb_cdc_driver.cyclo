@@ -1,0 +1,7 @@
+../Core/Src/drivers/usb_cdc_driver.c:40:18:usb_cdc_driver_init	2
+../Core/Src/drivers/usb_cdc_driver.c:69:6:usb_cdc_driver_on_activate	2
+../Core/Src/drivers/usb_cdc_driver.c:85:6:usb_cdc_driver_on_deactivate	1
+../Core/Src/drivers/usb_cdc_driver.c:108:6:usb_cdc_driver_on_parameter_change	1
+../Core/Src/drivers/usb_cdc_driver.c:118:18:usb_cdc_driver_write	13
+../Core/Src/drivers/usb_cdc_driver.c:217:18:usb_cdc_driver_read	8
+../Core/Src/drivers/usb_cdc_driver.c:275:6:usb_cdc_driver_is_connected	1

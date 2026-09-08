@@ -12,7 +12,7 @@
  */
 
 /* ------------------------------------------------------------------------ */
-/* 1) INCLUDE GUARD                                                          */
+/* INCLUDE GUARD                                                          */
 /* ------------------------------------------------------------------------ */
 /*
  * Un .h peut être inclus (via #include) par plusieurs fichiers .c différents.
@@ -29,7 +29,7 @@
 #define ENCODER_DRIVER_H
 
 /* ------------------------------------------------------------------------ */
-/* 2) INCLUDES                                                               */
+/* INCLUDES                                                               */
 /* ------------------------------------------------------------------------ */
 /*
  * On inclut stdint.h pour avoir accès aux types explicites (uint8_t,
@@ -39,7 +39,7 @@
 #include <stdint.h>
 
 /* ------------------------------------------------------------------------ */
-/* 3) TYPES PUBLICS EXPOSÉS PAR LE MODULE                                   */
+/* TYPES PUBLICS EXPOSÉS PAR LE MODULE                                   */
 /* ------------------------------------------------------------------------ */
 
 /**
@@ -62,16 +62,9 @@ typedef enum // typedef enum auto incrémente (ENCODER_OK = 0, ENCODER_ERROR = 1
     ENCODER_INVALID_PARAM       /*!< Paramètre invalide passé à la fonction (ex: pointeur NULL) */
 } Encoder_Status_t;
 
-/*
- * Pourquoi "_t" à la fin ? C'est une convention (pas une obligation du
- * langage C) très répandue en embarqué pour signaler immédiatement, à la
- * lecture, qu'un identifiant est un TYPE (typedef) et non une variable ou
- * une fonction. Tu la retrouveras dans toute la HAL ST (HAL_StatusTypeDef,
- * LPTIM_HandleTypeDef...).
- */
 
 /* ------------------------------------------------------------------------ */
-/* 4) PROTOTYPES DES FONCTIONS PUBLIQUES                                    */
+/* PROTOTYPES DES FONCTIONS PUBLIQUES                                    */
 /* ------------------------------------------------------------------------ */
 
 /**

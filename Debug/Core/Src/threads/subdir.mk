@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/threads/ui_thread.c 
+../Core/Src/threads/ui_thread.c \
+../Core/Src/threads/usb_cdc_thread.c 
 
 OBJS += \
-./Core/Src/threads/ui_thread.o 
+./Core/Src/threads/ui_thread.o \
+./Core/Src/threads/usb_cdc_thread.o 
 
 C_DEPS += \
-./Core/Src/threads/ui_thread.d 
+./Core/Src/threads/ui_thread.d \
+./Core/Src/threads/usb_cdc_thread.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/threads/%.o Core/Src/threads/%.su Core/Src/threads/%.cyclo: ../Core/Src
 clean: clean-Core-2f-Src-2f-threads
 
 clean-Core-2f-Src-2f-threads:
-	-$(RM) ./Core/Src/threads/ui_thread.cyclo ./Core/Src/threads/ui_thread.d ./Core/Src/threads/ui_thread.o ./Core/Src/threads/ui_thread.su
+	-$(RM) ./Core/Src/threads/ui_thread.cyclo ./Core/Src/threads/ui_thread.d ./Core/Src/threads/ui_thread.o ./Core/Src/threads/ui_thread.su ./Core/Src/threads/usb_cdc_thread.cyclo ./Core/Src/threads/usb_cdc_thread.d ./Core/Src/threads/usb_cdc_thread.o ./Core/Src/threads/usb_cdc_thread.su
 
 .PHONY: clean-Core-2f-Src-2f-threads
 

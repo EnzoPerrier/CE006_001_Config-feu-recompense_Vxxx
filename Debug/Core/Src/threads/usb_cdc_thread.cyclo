@@ -1,0 +1,6 @@
+../Core/Src/threads/usb_cdc_thread.c:75:6:usb_cdc_thread_init	3
+../Core/Src/threads/usb_cdc_thread.c:111:6:usb_cdc_thread_register_command_handler	1
+../Core/Src/threads/usb_cdc_thread.c:116:18:usb_cdc_thread_send_line	5
+../Core/Src/threads/usb_cdc_thread.c:155:13:usb_cdc_thread_entry	4
+../Core/Src/threads/usb_cdc_thread.c:200:13:usb_cdc_thread_process_byte	8
+../Core/Src/threads/usb_cdc_thread.c:254:13:usb_cdc_thread_reset_line_buffer	1
